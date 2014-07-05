@@ -1,0 +1,35 @@
+@import url(../bootstrap/css/bootstrap.min.css);
+* {
+  box-sizing: border-box; }
+
+body {
+  padding: 0;
+  margin: 0; }
+
+.page-header {
+  margin: 0;
+  padding: 0; }
+
+.jumbotron {
+  padding-top: 50px; }
+
+.post-list {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none; }
+  .post-list .post {
+    margin: 20px 0;
+    padding: 10px; }
+
+.post-wrapper img {
+  float: left;
+  margin: 0 10px 10px 0; }
+.post-wrapper div {
+  margin: 10px 0; }
+.post-wrapper .meta {
+  font-style: oblique;
+  color: #999; }
+
+.sidebar {
+  background: #eee; }

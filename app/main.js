@@ -7,18 +7,13 @@ app.controller('PostsController', ['$scope', 'tumblogService', 'tumblrAgService'
 	// tumblogService returns the blog list, then in the success function
 	// tumblrAgService makes an http request for each blog
 	// using blog_url and pushes each post into a postList array
+	$scope.blogs = [];
+	$scope.agPosts = [];
 	tumblogService.blogs()
 		.success(function(data, status) {
 			$scope.blogs = data.blogs;
-			tumblrAgService.posts(tumblrKey, data.blogs)
-				.then(function(data) {
-					$scope.agPosts = data;
-					console.log($scope.agPosts);
-				});
-			
+			$scope.agPosts = tumblrAgService.posts(tumblrKey, $scope.blogs);
 		});	
-
-	// run post processing service next
 
 }]);
 
@@ -78,41 +73,33 @@ app.factory('tumblrService', ['$http', function($http) {
 // takes a list of blog names and returns an aggregate list of posts
 // refactor to use tumblrService instead of $http service?
 
-// ammend view to display agPosts instead of posts
 // write processing service to order posts by timestamp
 // check for title
 // check post type to look for body or caption
 // unescape html for body/caption...figure out how $sce works
-app.factory('tumblrAgService', ['$http', '$q',function($http, $q) {
+app.factory('tumblrAgService', ['$http', function($http) {
 	var doRequest = function(tumblrKey, blogs) {
 
 		var postsList = [];
-		var dfrd = $q.defer();
-		dfrd.count = i;
-		var promises = [];
 
 		for (var i = 0; i < blogs.length; i++) {
-			(function(i) {
-				$http({
-					method: 'JSONP',
-					url: tumblrUrl + blogs[i].blog_url + '/posts?api_key=' + tumblrKey + '&limit=10&callback=JSON_CALLBACK'
-				})
-				.success(function(data, status) {
-					if (data) {
-						console.log(data);
-						for (var j = 0; j < data.response.posts; j++) {
-							postsList.push(data.response.posts[j]);
-						}
-						dfrd.resolve(postsList);
+			$http({
+				method: 'JSONP',
+				url: tumblrUrl + blogs[i].blog_url + '/posts?api_key=' + tumblrKey + '&limit=10&callback=JSON_CALLBACK'
+			})
+			.success(function(data, status) {
+				if (data) {
+					console.log(data.response.posts);
+					for (var j = 0; j < data.response.posts.length; j++) {
+						postsList.push(data.response.posts[j]);
+						postsList.sort(compareTimestamp);
 					}
-					promises.push(dfrd.promise);
-				});
-
-			})(i);
-			
+				}
+			});
 		}
-		console.log(postsList);
-		return $q.all(promises);
+
+
+		return postsList;
 	};
 
 	return {
@@ -133,6 +120,22 @@ app.factory('tumblogService', ['$http', function($http) {
 	};
 }]);
 
+// comparison utility for sorting aggregated posts by timestamp
+function compareTimestamp(a,b) {
+	var a_timestamp = parseInt(a.timestamp);
+	var b_timestamp = parseInt(b.timestamp);
+	console.log("A: " + a_timestamp);
+
+	if (a_timestamp < b_timestamp) {
+		return 1;
+	}
+		
+	if (a_timestamp > b_timestamp) {
+		return -1;
+	}
+		
+	return 0;
+}
 
 
 

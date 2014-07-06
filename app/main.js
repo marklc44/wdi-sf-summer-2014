@@ -73,7 +73,6 @@ app.factory('tumblrService', ['$http', function($http) {
 // takes a list of blog names and returns an aggregate list of posts
 // refactor to use tumblrService instead of $http service?
 
-// write processing service to order posts by timestamp
 // check for title
 // check post type to look for body or caption
 // unescape html for body/caption...figure out how $sce works

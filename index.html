@@ -37,6 +37,7 @@
 
 	<div class="jumbotron text-center">
 	  <h1>WDI SF: Summer 2014</h1>
+	  <h3>Notes, Blog Posts and Resources from the Summer Cohort!</h3>
 	</div>
 	<div class="container content-wrapper">
 		<div class="row">
@@ -44,15 +45,17 @@
 				<div ng-controller="PostsController">
 				<!-- display posts list -->
 					<h3>WDI SF Summer 2014 Tumblr Posts</h3>
-					<p>Working on an Angular module that will populate this area with a feed of all of this cohort's Tumblr posts</p>
-					<p>If you're reading this message, that means it ain't done yet, but when you see some posts here, you can click "Add my blog" at the top to add your blog to the feed.</p>
+					<p>Working on an Angular module that will populate this area with a feed of all of this cohort's Tumblr posts. The basic aggregating, sorting and displaying features are working.</p>
+					<p>The 'Add my blog' button at the top isn't hooked up yet, so there are just some demo blogs showing in the feed.</p>
 					<p>The repo lives here: <a href="https://github.com/marklc44/wdi-sf-summer-2014/tree/master">https://github.com/marklc44/wdi-sf-summer-2014/tree/master</a>.
 					</p>
 					<ul id="posts_list" class="post-list">
 						<li ng-repeat="post in agPosts" class="post">
 							<div class="post-wrapper">
-								<img src="{{ post.photos[0].alt_sizes[5].url }}">
-								<h3><a href="{{ post.post_url }}">{{ post.slug }}</a></h3>
+								<div class="img-wrapper">
+									<a href="{{ post.post_url }}"><img src="{{ post.photos[0].alt_sizes[5].url }}"></a>
+								</div>
+								<h3><a href="{{ post.post_url }}">{{ post.title }} {{ post.slug }}</a></h3>
 								<div class="meta">
 									<p>from <a href="{{ post.post_url }}">{{ post.blog_name }}.tumblr.com</a></p>
 									<p>{{ post.date }}</p>
@@ -65,7 +68,9 @@
 			</div><!-- /.col -->
 			<aside class="sidebar col-sm-4">
 				<h3>Sidebar</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor repellat soluta voluptatum eaque dolorum numquam enim et fuga quidem incidunt cupiditate, maiores magnam at debitis ipsa, dignissimos a. Quibusdam, eaque.</p>
+				<ul>
+					<li><a href="https://github.com/wdi-sf-march-2014">Notes from the March cohort</a></li>
+				</ul>
 			</aside>
 		</div><!-- /.row -->
 	</div><!-- /.content-wrapper -->

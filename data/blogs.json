@@ -1,19 +1,9 @@
 {
 	"blogs" : [
 		{
-			"first_name" : "Landon",
-			"last_name" : "P",
-			"blog_url" : "landonsbakedgood.tumblr.com"
-		},
-		{
-			"first_name" : "Mark",
-			"last_name" : "Centoni",
-			"blog_url" : "intertitles.tumblr.com"
-		},
-		{
-			"first_name" : "",
-			"last_name" : "",
-			"blog_url" : ""
+			"first_name" : "Maia",
+			"last_name" : "Hariton",
+			"blog_url" : "maiahariton.tumblr.com"
 		}
 	]
 }

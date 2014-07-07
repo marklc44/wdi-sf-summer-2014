@@ -22,14 +22,17 @@ body {
     margin: 20px 0;
     padding: 10px; }
 
-.post-wrapper .img-wrapper {
-  float: left;
-  margin: 0 10px 10px 0; }
-.post-wrapper div {
-  margin: 10px 0; }
-.post-wrapper .meta {
-  font-style: oblique;
-  color: #999; }
+.post-wrapper {
+  padding: 15px;
+  background: #eee; }
+  .post-wrapper .img-wrapper {
+    float: left;
+    margin: 0 10px 10px 0; }
+  .post-wrapper div {
+    margin: 10px 0; }
+  .post-wrapper .meta {
+    font-style: oblique;
+    color: #999; }
 
 .sidebar {
   background: #eee; }

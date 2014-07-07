@@ -14,7 +14,23 @@
 			"first_name" : "Angga",
 			"last_name" : "Putra",
 			"blog_url" : "fohtoh.tumblr.com"
+		},
+		{
+			"first_name" : "Randall",
+			"last_name" : "Leung",
+			"blog_url" : "anleung.tumblr.com"
+		},
+		{
+			"first_name" : "Alli",
+			"last_name" : "Cernoch",
+			"blog_url" : "allicernoch.tumblr.com"
+		},
+		{
+			"first_name" : "Lisa",
+			"last_name" : "Vogt",
+			"blog_url" : "lisavogtsf.tumblr.com"
 		}
+
 		
 	]
 }

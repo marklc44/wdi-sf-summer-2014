@@ -9,6 +9,11 @@
 			"first_name" : "Mark",
 			"last_name" : "Centoni",
 			"blog_url" : "intertitles.tumblr.com"
+		},
+		{
+			"first_name" : "",
+			"last_name" : "",
+			"blog_url" : ""
 		}
 	]
 }

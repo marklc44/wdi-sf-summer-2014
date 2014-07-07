@@ -92,14 +92,17 @@
 	      <div class="modal-body">
 	        <div ng-controller="BlogsController">
 				<!-- add your blog to the feed -->
-					<input type="text" placeholder="First Name">
-					<input type="text" placeholder="Last Name">
-					<input type="text" placeholder="Add your blog url">
+					<input type="text" ng-model="input.first_name" name="first_name" placeholder="First Name">
+					<input type="text" ng-model="input.last_name" name="last_name" placeholder="Last Name">
+					<input type="text" ng-model="input.blog_url" name="blog_url" placeholder="Add your blog url">
+					<p>{{ input.first_name }}</p>
+					<p>{{ input.last_name }}</p>
+					<p>{{ input.blog_url }}</p>
 				</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-	        <button type="button" class="btn btn-primary">Add my blog!</button>
+	        <button type="button" class="btn btn-primary" ng-click="inputPost">Add my blog!</button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->

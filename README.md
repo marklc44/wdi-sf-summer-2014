@@ -14,7 +14,9 @@ You're welcome to fork, clone, add whatever you want (anything - graphics, anima
 
 ## To Do
 1. Complete 'Add my blog' functionality
-2. Add service for Wordpress blogs
-3. Process for adding notes + organized notes area
-4. Organized resources area
-5. Modularize the pages, menu and routing in angular to create more pages
+2. Unescape HTML in post excerpts
+3. Better styling
+4. Add service for Wordpress blogs
+5. Process for adding notes + organized notes area
+6. Organized resources area
+7. Modularize the pages, menu and routing in angular to create more pages

@@ -3,7 +3,7 @@
 var app = angular.module('myApp', []);
 
 // controller for post list
-app.controller('PostsController', ['$scope', 'tumblogService', 'tumblrAgService',function($scope, tumblogService, tumblrAgService) {
+app.controller('PostsController', ['$scope', 'tumblogService', 'tumblrAgService', function($scope, tumblogService, tumblrAgService) {
 	// tumblogService returns the blog list, then in the success function
 	// tumblrAgService makes an http request for each blog
 	// using blog_url and pushes each post into a postList array
@@ -18,8 +18,13 @@ app.controller('PostsController', ['$scope', 'tumblogService', 'tumblrAgService'
 }]);
 
 // controller for blogname input form
-app.controller('BlogsController', ['$scope', function($scope) {
+app.controller('BlogsController', ['$scope', 'blogInputService', function($scope, blogInputService) {
 	// slice up the url before saving to json file
+	$scope.input = {}; // get input as object
+	blogInputService.inputPost($scope.input)
+		.success(function() {
+			console.log("Success!");
+		});
 }]);
 
 // Directive to display the tumblr list item view
@@ -119,6 +124,27 @@ app.factory('tumblogService', ['$http', function($http) {
 	};
 }]);
 
+app.factory('blogInputService', ['$http', function($http) {
+	// process blog input
+
+	// post to data/blogs.json
+	var doRequest = function(data) {
+		// remove beginning "http://" and trailing "/" if they exist
+		var post_data = strip_url(data.blog_url);
+
+		$http({
+			method: 'POST',
+			url: 'data/blogs.json',
+			data: post_data
+		});
+	};
+
+	return {
+		inputPost: function(data) { return doRequest(); }
+	};
+	
+}]);
+
 // comparison utility for sorting aggregated posts by timestamp
 function compareTimestamp(a,b) {
 	var a_timestamp = parseInt(a.timestamp);
@@ -134,6 +160,30 @@ function compareTimestamp(a,b) {
 	}
 		
 	return 0;
+}
+
+// utility to strip url of unnecessary parts
+function strip_url(data) {
+	var data = data;
+	var str = data.blog_url;
+	// if data starts with "http://www."
+	if (str.slice(0,10) === "http://www") {
+		// strip it
+		str = str.slice(10, str.length);
+	}
+	// if data starts with "http://"
+	if (str.slice(0,7) === "http://") {
+		// strip it
+		str = str.slice(7, str.length);
+	}
+	// if data ends with "/"
+	if (str.slice(str.length - 1) === "/") {
+		// strip it
+		str = str.slice(0, string.length - 1);
+	}
+	data.blog_url = str;
+
+	return data;
 }
 
 

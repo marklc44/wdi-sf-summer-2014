@@ -13,6 +13,12 @@ body {
 }
 .jumbotron {
 	padding-top: 50px;
+	background: rgb(251, 211, 52);
+	color: darken(rgb(251, 211, 52), 30%);
+	text-shadow: 1px 1px 0 #fff;
+	-webkit-text-shadow: 1px 1px 0 #fff;
+	-moz-text-shadow: 1px 1px 0 #fff;
+	-ms-text-shadow: 1px 1px 0 #fff;
 }
 
 // Posts

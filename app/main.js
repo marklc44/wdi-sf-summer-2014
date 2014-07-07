@@ -21,10 +21,7 @@ app.controller('PostsController', ['$scope', 'tumblogService', 'tumblrAgService'
 app.controller('BlogsController', ['$scope', 'blogInputService', function($scope, blogInputService) {
 	// slice up the url before saving to json file
 	$scope.input = {}; // get input as object
-	blogInputService.inputPost($scope.input)
-		.success(function() {
-			console.log("Success!");
-		});
+	
 }]);
 
 // Directive to display the tumblr list item view
@@ -126,22 +123,20 @@ app.factory('tumblogService', ['$http', function($http) {
 
 app.factory('blogInputService', ['$http', function($http) {
 	// process blog input
+	var blog = {
+		input: function(data) {
+			// remove beginning "http://" and trailing "/" if they exist
+			var post_data = strip_url(data.blog_url);
 
-	// post to data/blogs.json
-	var doRequest = function(data) {
-		// remove beginning "http://" and trailing "/" if they exist
-		var post_data = strip_url(data.blog_url);
-
-		$http({
-			method: 'POST',
-			url: 'data/blogs.json',
-			data: post_data
-		});
-	};
-
-	return {
-		inputPost: function(data) { return doRequest(); }
-	};
+			$http({
+				method: 'POST',
+				url: 'data/blogs.json',
+				data: post_data
+			});
+		}
+	}
+	
+	return blog;
 	
 }]);
 

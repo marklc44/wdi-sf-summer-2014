@@ -46,7 +46,7 @@
 				<!-- display posts list -->
 					<h3>WDI SF Summer 2014 Tumblr Posts</h3>
 					<p>Working on an Angular module that will populate this area with a feed of all of this cohort's Tumblr posts. The basic aggregating, sorting and displaying features are working.</p>
-					<p>The 'Add my blog' button at the top isn't hooked up yet, so there are just some demo blogs showing in the feed.</p>
+					<p>The 'Add my blog' button at the top doesn't work without a proper backend to POST to, so all tumblr URLs are added manually to the json file. Not very magical...yet.</p>
 					<p>The repo lives here: <a href="https://github.com/marklc44/wdi-sf-summer-2014/tree/master">https://github.com/marklc44/wdi-sf-summer-2014/tree/master</a>.
 					</p>
 					<ul id="posts_list" class="post-list">
@@ -87,7 +87,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title">Add Your Blog to the Feed</h4>
+	        <h4 class="modal-title">This doesn't work yet!</h4>
 	      </div>
 	      <div class="modal-body">
 	        <div ng-controller="BlogsController">
@@ -102,7 +102,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-	        <button type="button" class="btn btn-primary" ng-click="inputPost">Add my blog!</button>
+	        <button type="button" class="btn btn-primary" ng-click="blog.input(input)">Add my blog!</button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->

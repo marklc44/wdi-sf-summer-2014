@@ -144,7 +144,6 @@ app.factory('blogInputService', ['$http', function($http) {
 function compareTimestamp(a,b) {
 	var a_timestamp = parseInt(a.timestamp);
 	var b_timestamp = parseInt(b.timestamp);
-	console.log("A: " + a_timestamp);
 
 	if (a_timestamp < b_timestamp) {
 		return 1;

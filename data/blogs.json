@@ -44,6 +44,11 @@
 			"first_name" : "Steph",
 			"last_name" : "Monette",
 			"blog_url" : "stephmonette.tumblr.com"
+		},
+		{
+			"first_name" : "Nick",
+			"last_name" : "Caskey",
+			"blog_url" : "ncaskey04.tumblr.com"
 		}	
 	]
 }

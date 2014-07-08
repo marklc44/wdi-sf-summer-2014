@@ -20,6 +20,16 @@ body {
   -moz-text-shadow: 1px 1px 0 #fff;
   -ms-text-shadow: 1px 1px 0 #fff; }
 
+.blogs-menu {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0; }
+  .blogs-menu li {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 2em; }
+
 .post-list {
   margin: 0;
   padding: 0;
@@ -31,10 +41,15 @@ body {
 
 .post-wrapper {
   padding: 15px;
-  background: #eee; }
+  background: #eee;
+  overflow: hidden; }
   .post-wrapper .img-wrapper {
     float: left;
-    margin: 0 10px 10px 0; }
+    margin: 0 10px 10px 0;
+    max-width: 25%;
+    overflow: hidden; }
+    .post-wrapper .img-wrapper img {
+      width: 100%; }
   .post-wrapper div {
     margin: 10px 0; }
   .post-wrapper .meta {

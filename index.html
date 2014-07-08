@@ -44,11 +44,17 @@
 			<div class="col-sm-8">
 				<div ng-controller="PostsController">
 				<!-- display posts list -->
-					<h3>WDI SF Summer 2014 Tumblr Posts</h3>
-					<p>Working on an Angular module that will populate this area with a feed of all of this cohort's Tumblr posts. The basic aggregating, sorting and displaying features are working.</p>
-					<p>The 'Add my blog' button at the top doesn't work without a proper backend to POST to, so all tumblr URLs are added manually to the json file. Not very magical...yet.</p>
+					<h3>WDI SF Summer 2014 Blog Posts</h3>
 					<p>The repo lives here: <a href="https://github.com/marklc44/wdi-sf-summer-2014/tree/master">https://github.com/marklc44/wdi-sf-summer-2014/tree/master</a>.
 					</p>
+					<ul class="blogs-menu">
+						<li><a href="#tumblr">Tumbler Posts</a></li>
+						<li> | </li>
+						<li><a href="#wordpress">Wordpress Posts</a></li>
+					</ul>
+
+					<!-- tumblr Post List -->
+					<h2 id="tumblr">Tumblr Posts</h2>
 					<ul id="posts_list" class="post-list">
 						<li ng-repeat="post in agPosts" class="post">
 							<div class="post-wrapper">
@@ -64,6 +70,25 @@
 							</div>
 						</li>
 					</ul>
+					
+					<!-- wp post list -->
+					<h2 id="wordpress">Wordpress Posts</h2>
+					<ul id="posts_list" class="post-list">
+						<li ng-repeat="wpPost in wpPosts" class="post">
+							<div class="post-wrapper">
+								<div class="img-wrapper">
+									<a href="{{ wpPost.URL }}"><img src="{{ wpPost.featured_image }}"></a>
+								</div>
+								<h3><a href="{{ wpPost.URL }}">{{ wpPost.title }}</a></h3>
+								<div class="meta">
+									<p>from <a href="{{ wpPost.URL }}">{{ wpPost.author.url }}</a></p>
+									<p>{{ wpPost.date }}</p>
+								</div>
+								<!--div class="content" ng-bind-html-unsafe="post.caption">{{ post.caption }}</div-->
+							</div>
+						</li>
+					</ul>
+
 				</div>
 			</div><!-- /.col -->
 			<aside class="sidebar col-sm-4">
@@ -83,6 +108,7 @@
 					<li><a href="http://leftshift.io/8-tips-for-angular-js-beginners/">8 Tips for Angular JS Beginners</a></li>
 					<li><a href="http://deansofer.com/posts/view/14/AngularJs-Tips-and-Tricks-UPDATED">Angular Tips and Tricks</a></li>
 				</ul>
+
 			</aside>
 		</div><!-- /.row -->
 	</div><!-- /.content-wrapper -->
@@ -119,5 +145,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="app/main.js"></script>
+	<script src="app/ui.js"></script>
 </body>
 </html>

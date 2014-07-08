@@ -22,6 +22,18 @@ body {
 	-ms-text-shadow: 1px 1px 0 #fff;
 }
 
+.blogs-menu {
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	li {
+		display: inline-block;
+		margin-right: 10px;
+		font-size: 2em;
+	}
+}
+
 // Posts
 .post-list {
 	margin: 0;
@@ -37,9 +49,15 @@ body {
 .post-wrapper {
 	padding: 15px;
 	background: #eee;
+	overflow: hidden;
 	.img-wrapper {
 		float: left;
 		margin: 0 10px 10px 0;
+		max-width: 25%;
+		overflow: hidden;
+		img {
+			width: 100%;
+		}
 	}
 	div {
 		margin: 10px 0;

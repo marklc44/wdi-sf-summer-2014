@@ -3,17 +3,27 @@
 var app = angular.module('myApp', []);
 
 // controller for post list
-app.controller('PostsController', ['$scope', 'tumblogService', 'tumblrAgService', function($scope, tumblogService, tumblrAgService) {
+app.controller('PostsController', ['$scope', 'tumblogService', 'tumblrAgService', 'wpBlogService', 'wpAgService', function($scope, tumblogService, tumblrAgService, wpBlogService, wpAgService) {
 	// tumblogService returns the blog list, then in the success function
 	// tumblrAgService makes an http request for each blog
 	// using blog_url and pushes each post into a postList array
 	$scope.blogs = [];
 	$scope.agPosts = [];
+	$scope.wpBlogs = [];
+
 	tumblogService.blogs()
 		.success(function(data, status) {
 			$scope.blogs = data.blogs;
 			$scope.agPosts = tumblrAgService.posts(tumblrKey, $scope.blogs);
 		});	
+
+		wpBlogService.blogs()
+			.success(function(data, status) {
+				$scope.wpBlogs = data.blogs;
+				console.log($scope.wpBlogs);
+				$scope.wpPosts = wpAgService.posts($scope.wpBlogs);
+				console.log($scope.wpPosts);
+			});
 
 }]);
 
@@ -51,6 +61,10 @@ app.directive('tumblrLink', function() {
 });
 
 // Services
+
+// -------------------------------------------------------
+// Tumblr
+// -------------------------------------------------------
 
 // sample request: api.tumblr.com/v2/blog/{base-hostname}/posts[/type]?api_key={key}&[optional-params=]
 var tumblrKey = 'ttswNEWaJ4bKeVcHVFvchCmRwyEi9YApr7JdWlIIB72xUvGzJU';
@@ -99,7 +113,6 @@ app.factory('tumblrAgService', ['$http', function($http) {
 			});
 		}
 
-
 		return postsList;
 	};
 
@@ -121,6 +134,58 @@ app.factory('tumblogService', ['$http', function($http) {
 	};
 }]);
 
+// -------------------------------------------------------
+// Wordpress
+// -------------------------------------------------------
+
+
+app.factory('wpAgService', ['$http', function($http) {
+		var doRequest = function(wp_blogs) {
+
+		var postsList = [];
+		var wpUrl = 'https://public-api.wordpress.com/rest/v1/sites/';
+
+		for (var i = 0; i < wp_blogs.length; i++) {
+			$http({
+				method: 'GET',
+				url: wpUrl + wp_blogs[i].blog_url + '/posts/?number=5&pretty=1'
+			})
+			.success(function(data, status) {
+				if (data) {
+					console.log(data.posts);
+					for (var j = 0; j < data.posts.length; j++) {
+						postsList.push(data.posts[j]);
+					}
+				}
+			});
+		}
+
+		return postsList;
+	};
+
+	return {
+		posts: function(wp_blogs) { return doRequest(wp_blogs); }
+	};
+}]);
+
+app.factory('wpBlogService', ['$http', function($http) {
+	var doRequest = function() {
+		return $http({
+			method: 'GET',
+			url: 'data/wp.json'
+		});
+	};
+
+	return {
+		blogs: function() { return doRequest(); }
+	};
+}]);
+
+
+// -------------------------------------------------------
+// For input only. Requires POST or global json object
+// -------------------------------------------------------
+
 app.factory('blogInputService', ['$http', function($http) {
 	// process blog input
 	var blog = {
@@ -139,6 +204,10 @@ app.factory('blogInputService', ['$http', function($http) {
 	return blog;
 	
 }]);
+
+// -------------------------------------------------------
+// Utilities
+// -------------------------------------------------------
 
 // comparison utility for sorting aggregated posts by timestamp
 function compareTimestamp(a,b) {

@@ -29,8 +29,16 @@
 			"first_name" : "Lisa",
 			"last_name" : "Vogt",
 			"blog_url" : "lisavogtsf.tumblr.com"
+		},
+		{
+			"first_name" : "Cameron",
+			"last_name" : "Jacoby",
+			"blog_url" : "cameronjacoby.tumblr.com"
+		},
+		{
+			"first_name" : "Mike",
+			"last_name" : "McClure",
+			"blog_url" : "salamandermike.tumblr.com"
 		}
-
-		
 	]
 }

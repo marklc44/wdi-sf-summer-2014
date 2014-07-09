@@ -72,3 +72,20 @@ body {
 	background: #eee;
 	padding: 15px;
 }
+
+.top-btn {
+	position: fixed;
+	bottom: 50px;
+	right: 40%;
+	width: 80px;
+	background: rgba(150, 150, 150, 0.5);
+	color: white;
+	display: none;
+	&:hover {
+		background: rgba(150, 150, 150, 1.0);
+	}
+
+	.show {
+		display: block;
+	}
+}

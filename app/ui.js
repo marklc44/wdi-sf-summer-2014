@@ -16,3 +16,18 @@ jQuery(function( $ ) {
     }
   });
 });
+
+jQuery(document).ready(function( $ ) {
+
+  $(window).scroll(function() {
+    var curScroll = $('body').scrollTop();
+
+    if (curScroll > 60) {
+      $('#top-btn').addClass('show');
+    }
+    if (curScroll <= 60) {
+      $('#top-btn').removeClass('show');
+    }
+  });
+
+});
